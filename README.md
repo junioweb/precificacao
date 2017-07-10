@@ -1,2 +1,2 @@
-# precos
-Esse projeto refere-se a criação de uma API que auxiliará na formação de preços dos produtos.
+# Formação de Preços
+Essa API nos auxiliará na formação de preços dos mais variados produtos. Com cálculos de custo, de preço de venda e de margem de lucro.
