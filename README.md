@@ -3,7 +3,7 @@ Um dos desafios mais comuns com que se deparam empreendedores que estão inician
 
 Baseado neste problema e visando auxiliar na formação de preços dos produtos, resolvemos disponibilizar uma API REST para ser utilizada e melhorada por toda a Comunidade, sob Licença BSD. De início utilizaremos a forma de precificação baseada em custos para cálculos de preço de venda, de custo, de margem de lucro e de encargos sobre o preço de venda.
 
-A precificação baseada em custos consiste em determinar um percentual e adicionar ao custo total do produto
+A precificação baseada em custos consiste em determinar um percentual e adicionar ao custo total do produto.
 
 Roteiro básico para formação de preços
 ---------------------------------------
@@ -31,11 +31,11 @@ As etapas para cálculo do preço são as seguintes:
     
 3. Determinação da margem de lucro
 
-    O preço a ser praticado precisa gerar certa margem de lucro para a empresa. Essa margem de lucro, também chamada de <i>mark up</i>, pode ser calculada sobre o preço de venda ou sobre o custo unitário de produção. A determinação da margem de lucro é uma das decisões mais importantes no processo de precificação. Se a margem for pequena poderá produzir um resultado financeiro insatisfatório. Se for muito alta poderá acarretar perda de vendas gerando também um resultado ruim.
+    O preço a ser praticado precisa gerar certa margem de lucro para a empresa. Essa margem de lucro, também chamada de *mark up*, pode ser calculada sobre o preço de venda ou sobre o custo unitário de produção. A determinação da margem de lucro é uma das decisões mais importantes no processo de precificação. Se a margem for pequena poderá produzir um resultado financeiro insatisfatório. Se for muito alta poderá acarretar perda de vendas gerando também um resultado ruim.
     
     Um bom indicador para a determinação da margem de lucro é o seguinte: numa empresa bem administrada, de qualquer porte e de qualquer segmento, o lucro final anual normalmente não passa de 15% sobre o capital próprio. Assim se a empresa tem um capital próprio  de R$ 1.000,000,00 (tudo o que ela tem menos tudo o que ela deve, num quadro de normalidade), o lucro anual esperado com a venda de todos seus produtos  ou serviços será, normalmente, no máximo R$ 150.000,00 (15% ao ano).
     
-    A maiorias das empresas em todo mundo estabelece como meta de retorno o percentual de 15% ao ano sobre seu capital próprio. A margem de lucro ou <i>mark up</i> corresponde ao  percentual a ser acrescido ao custo unitário (essa é a prática mais usual) de modo a produzir a meta de retorno estabelecida para o capital próprio. A margem de lucro também pode ser calculada de modo a gerar um determinado valor de lucro mensal ou anual – R$ 60.000,00 por mês, por exemplo. Em alguns casos a empresa aplica a margem de lucro habitualmente usada pelos concorrentes. Tanto o lucro em valor absoluto como a margem de lucro copiada dos  concorrentes não podem ser adotados de modo totalmente livre. Precisam ser avaliados em termos de razoabilidade.
+    A maiorias das empresas em todo mundo estabelece como meta de retorno o percentual de 15% ao ano sobre seu capital próprio. A margem de lucro ou *mark up* corresponde ao  percentual a ser acrescido ao custo unitário (essa é a prática mais usual) de modo a produzir a meta de retorno estabelecida para o capital próprio. A margem de lucro também pode ser calculada de modo a gerar um determinado valor de lucro mensal ou anual – R$ 60.000,00 por mês, por exemplo. Em alguns casos a empresa aplica a margem de lucro habitualmente usada pelos concorrentes. Tanto o lucro em valor absoluto como a margem de lucro copiada dos  concorrentes não podem ser adotados de modo totalmente livre. Precisam ser avaliados em termos de razoabilidade.
     
     Suponhamos que a empresa constate que aplicando uma margem de 28,7% sobre o custo total unitário de seus produtos para formar o preço de venda (margem sobre o custo), ela atinja  sua meta de retorno.
     
