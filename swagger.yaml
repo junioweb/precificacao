@@ -1,219 +1,222 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  title: Precificação
-  description: >-
-    Essa API auxiliará na formação de preços dos mais variados produtos. Com
-    cálculos de custo, de preço de venda e de margem de lucro.
-  version: 1.0.0
+  title: "Precificação"
+  description: "Essa API auxiliará na formação de preços dos mais variados produtos. Com cálculos de custo, de preço de venda e de margem de lucro."
+  version: "1.0.0"
   contact:
-    name: Fernando Júnior
-    email: fernando.junior@thorgus.com
+    name: "Fernando Júnior"
+    email: "fernando.junior@thorgus.com"
   license:
-    name: Licença BSD
-    url: 'https://opensource.org/licenses/BSD-3-Clause'
-host: thorgus.com
-basePath: /api/precos/v1
+    name: "Licença BSD"
+    url: "https://opensource.org/licenses/BSD-3-Clause"
+host: "api.thorgus.com"
+basePath: "/precos/v1"
 schemes:
-  - http
+- "https"
 tags:
-  - name: venda
-    description: Preço de Venda do produto.
-    externalDocs:
-      description: Veja mais detalhes sobre os cálculos.
-      url: 'https://github.com/junioweb/precificacao'
-  - name: lucro
-    description: Margem de Lucro sobre o Custo Total Unitário.
-    externalDocs:
-      description: Veja mais detalhes sobre os cálculos.
-      url: 'https://github.com/junioweb/precificacao'
-  - name: custo
-    description: Custo Total Unitário do produto.
-    externalDocs:
-      description: Veja mais detalhes sobre os cálculos.
-      url: 'https://github.com/junioweb/precificacao'
+- name: "venda"
+  description: "Preço de Venda do produto."
+  externalDocs:
+    description: "Veja mais detalhes sobre os cálculos."
+    url: "https://github.com/junioweb/precificacao"
+- name: "lucro"
+  description: "Margem de Lucro sobre o Custo Total Unitário."
+  externalDocs:
+    description: "Veja mais detalhes sobre os cálculos."
+    url: "https://github.com/junioweb/precificacao"
+- name: "custo"
+  description: "Custo Total Unitário do produto."
+  externalDocs:
+    description: "Veja mais detalhes sobre os cálculos."
+    url: "https://github.com/junioweb/precificacao"
+- name: "encargos"
+  description: "Encargos sobre o Preço de Venda do produto."
+  externalDocs:
+    description: "Veja mais detalhes sobre os cálculos."
+    url: "https://github.com/junioweb/precificacao"
 paths:
   /venda:
     get:
       tags:
-        - venda
-      summary: Calcule o Preço de Venda do produto
-      description: >-
-        Aqui é retornado o preço de venda do produto, de acordo com os dados
-        passados no parâmetro. 
-
-        Fórmula:
-
-        P = C(1+M)/(1-E) 
-
-        Legenda:
-
-        P - Preço de Venda
-
-        C - Custo Total Unitário
-
-        M - Margem de Lucro
-
-        E - Encargos
+      - "venda"
+      summary: "Calcule o Preço de Venda do produto"
+      description: "Aqui é retornado o preço de venda do produto, de acordo com os dados passados no parâmetro. \nFórmula:\nP = C(1+M)/(1-E) \nLegenda:\nP - Preço de Venda\nC - Custo Total Unitário\nM - Margem de Lucro\nE - Encargos"
       produces:
-        - application/xml
-        - application/json
+      - "application/xml"
+      - "application/json"
       parameters:
-        - name: custo
-          in: query
-          description: >-
-            Custo Total Unitário. Resultado da soma entre Custo Direto e
-            Indireto.
-          required: true
-          type: number
-          format: float
-        - name: encargos
-          in: query
-          description: Porcentagem sobre o Preço de Venda.
-          required: true
-          type: number
-          format: float
-        - name: lucro
-          in: query
-          description: Margem de Lucro aplicada sobre o Custo Total Unitário.
-          required: true
-          type: number
-          format: float
+      - name: "custo"
+        in: "query"
+        description: "Custo Total Unitário. Resultado da soma entre Custo Direto e Indireto."
+        required: true
+        type: "number"
+        format: "float"
+      - name: "encargos"
+        in: "query"
+        description: "Porcentagem sobre o Preço de Venda. \n(Ex.: 26% => 0.26 //Deve ser inserido em formato decimal)"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "lucro"
+        in: "query"
+        description: "Margem de Lucro aplicada sobre o Custo Total Unitário. \n(Ex.: 28.7% => 0.287 //Deve ser inserido em formato decimal)"
+        required: true
+        type: "number"
+        format: "float"
       responses:
-        '200':
-          description: Cálculo realizado com sucesso.
+        200:
+          description: "Cálculo realizado com sucesso."
           schema:
-            $ref: '#/definitions/Venda'
-        '400':
-          description: Erro na Requisição (Parâmetros inválidos).
+            $ref: "#/definitions/Venda"
+        400:
+          description: "Erro na Requisição (Parâmetros inválidos)."
   /lucro:
     get:
       tags:
-        - lucro
-      summary: Calcule a Margem de Lucro aplicada sobre o Custo Total Unitário.
-      description: >-
-        Aqui é retornada a margem de lucro aplicada sobre o Custo Total
-        Unitário, de acordo com os dados passados no parâmetro. 
-
-        Fórmula:
-
-        M = P(1-E)-C/C 
-
-        Legenda:
-
-        P - Preço de Venda
-
-        C - Custo Total Unitário
-
-        M - Margem de Lucro
-
-        E - Encargos
+      - "lucro"
+      summary: "Calcule a Margem de Lucro aplicada sobre o Custo Total Unitário."
+      description: "Aqui é retornada a margem de lucro aplicada sobre o Custo Total Unitário, de acordo com os dados passados no parâmetro. \nFórmula:\nM = P(1-E)-C \nLegenda:\nP - Preço de Venda\nC - Custo Total Unitário\nM - Margem de Lucro\nE - Encargos"
       produces:
-        - application/xml
-        - application/json
+      - "application/xml"
+      - "application/json"
       parameters:
-        - name: venda
-          in: query
-          description: Preço de Venda do produto.
-          required: true
-          type: number
-          format: float
-        - name: custo
-          in: query
-          description: >-
-            Custo Total Unitário. Resultado da soma entre Custo Direto e
-            Indireto.
-          required: true
-          type: number
-          format: float
-        - name: encargos
-          in: query
-          description: Porcentagem sobre o Preço de Venda.
-          required: true
-          type: number
-          format: float
+      - name: "venda"
+        in: "query"
+        description: "Preço de Venda do produto."
+        required: true
+        type: "number"
+        format: "float"
+      - name: "custo"
+        in: "query"
+        description: "Custo Total Unitário. Resultado da soma entre Custo Direto e Indireto."
+        required: true
+        type: "number"
+        format: "float"
+      - name: "encargos"
+        in: "query"
+        description: "Porcentagem sobre o Preço de Venda. \n(Ex.: 26% => 0.26 //Deve ser inserido em formato decimal)"
+        required: true
+        type: "number"
+        format: "float"
       responses:
-        '200':
-          description: Cálculo realizado com sucesso.
+        200:
+          description: "Cálculo realizado com sucesso."
           schema:
-            $ref: '#/definitions/Lucro'
-        '400':
-          description: Erro na Requisição (Parâmetros inválidos).
+            $ref: "#/definitions/Lucro"
+        400:
+          description: "Erro na Requisição (Parâmetros inválidos)."
   /custo:
     get:
       tags:
-        - custo
-      summary: Calcule o Custo Total Unitário do produto.
-      description: >-
-        Aqui é retornado o Custo Total Unitário do Produto, de acordo com os
-        dados passados no parâmetro. 
-
-        Fórmula:
-
-        C = P(1-E)/(1+M) 
-
-        Legenda:
-
-        P - Preço de Venda
-
-        C - Custo Total Unitário
-
-        M - Margem de Lucro
-
-        E - Encargos
+      - "custo"
+      summary: "Calcule o Custo Total Unitário do produto."
+      description: "Aqui é retornado o Custo Total Unitário do Produto, de acordo com os dados passados no parâmetro. \nFórmula:\nC = P(1-E)/(1+M) \nLegenda:\nP - Preço de Venda\nC - Custo Total Unitário\nM - Margem de Lucro\nE - Encargos"
       produces:
-        - application/xml
-        - application/json
+      - "application/xml"
+      - "application/json"
       parameters:
-        - name: venda
-          in: query
-          description: Preço de Venda do produto.
-          required: true
-          type: number
-          format: float
-        - name: encargos
-          in: query
-          description: Porcentagem sobre o Preço de Venda.
-          required: true
-          type: number
-          format: float
-        - name: lucro
-          in: query
-          description: Margem de Lucro aplicada sobre o Custo Total Unitário.
-          required: true
-          type: number
-          format: float
+      - name: "venda"
+        in: "query"
+        description: "Preço de Venda do produto."
+        required: true
+        type: "number"
+        format: "float"
+      - name: "encargos"
+        in: "query"
+        description: "Porcentagem sobre o Preço de Venda. \n(Ex.: 26% => 0.26 //Deve ser inserido em formato decimal)"
+        required: true
+        type: "number"
+        format: "float"
+      - name: "lucro"
+        in: "query"
+        description: "Margem de Lucro aplicada sobre o Custo Total Unitário. \n(Ex.: 28.7% => 0.287 //Deve ser inserido em formato decimal)"
+        required: true
+        type: "number"
+        format: "float"
       responses:
-        '200':
-          description: Cálculo realizado com sucesso.
+        200:
+          description: "Cálculo realizado com sucesso."
           schema:
-            $ref: '#/definitions/Custo'
-        '400':
-          description: Erro na Requisição (Parâmetros inválidos).
+            $ref: "#/definitions/Custo"
+        400:
+          description: "Erro na Requisição (Parâmetros inválidos)."
+  /encargos:
+    get:
+      tags:
+      - "encargos"
+      summary: "Calcule os Encargos sobre o Preço de Venda do produto."
+      description: "Aqui é retornado os Encargos sobre o Preço de Venda do Produto, de acordo com os dados passados no parâmetro. \nFórmula:\nE = C(1+M)-P \nLegenda:\nP - Preço de Venda\nC - Custo Total Unitário\nM - Margem de Lucro\nE - Encargos"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "venda"
+        in: "query"
+        description: "Preço de Venda do produto."
+        required: true
+        type: "number"
+        format: "float"
+      - name: "custo"
+        in: "query"
+        description: "Custo Total Unitário. Resultado da soma entre Custo Direto e Indireto."
+        required: true
+        type: "number"
+        format: "float"
+      - name: "lucro"
+        in: "query"
+        description: "Margem de Lucro aplicada sobre o Custo Total Unitário. \n(Ex.: 28.7% => 0.287 //Deve ser inserido em formato decimal)"
+        required: true
+        type: "number"
+        format: "float"
+      responses:
+        200:
+          description: "Cálculo realizado com sucesso."
+          schema:
+            $ref: "#/definitions/Encargos"
+        400:
+          description: "Erro na Requisição (Parâmetros inválidos)."
 definitions:
   Venda:
-    type: object
+    type: "object"
     properties:
       valor:
-        type: number
-        format: float
+        type: "number"
+        format: "float"
     xml:
-      name: Venda
+      name: "Venda"
   Lucro:
-    type: object
-    properties:
-      porcentagem:
-        type: number
-        format: float
-    xml:
-      name: Lucro
-  Custo:
-    type: object
+    type: "object"
     properties:
       valor:
-        type: number
-        format: float
+        type: "number"
+        format: "float"
+      porcentagem:
+        type: "number"
+        format: "float"
     xml:
-      name: Custo
+      name: "Lucro"
+  Custo:
+    type: "object"
+    properties:
+      valor:
+        type: "number"
+        format: "float"
+      porcentagem:
+        type: "number"
+        format: "float"
+    xml:
+      name: "Custo"
+  Encargos:
+    type: "object"
+    properties:
+      valor:
+        type: "number"
+        format: "float"
+      porcentagem:
+        type: "number"
+        format: "float"
+    xml:
+      name: "Encargos"
 externalDocs:
-  description: Veja mais detalhes sobre os cálculos
-  url: 'https://github.com/junioweb/precificacao'
+  description: "Veja mais detalhes sobre os cálculos"
+  url: "https://github.com/junioweb/precificacao"

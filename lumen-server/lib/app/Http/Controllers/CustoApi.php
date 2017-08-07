@@ -57,7 +57,14 @@ class CustoApi extends Controller
         }
         $lucro = $input['lucro'];
 
+        $valor = round(abs(
+          $venda*(1-$encargos)/(1+$lucro)
+        ),2);
 
-        return response('How about implementing custoGet as a GET method ?');
+        $porcentagem = round(abs(
+          $valor * 100 / $venda
+        ),2);
+
+        return response()->json(['valor' => $valor, 'porcentagem' => $porcentagem]);
     }
 }

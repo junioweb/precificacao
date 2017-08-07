@@ -17,7 +17,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Request;
 
-class VendaApi extends Controller
+class EncargosApi extends Controller
 {
     /**
      * Constructor
@@ -27,14 +27,14 @@ class VendaApi extends Controller
     }
 
     /**
-     * Operation vendaGet
+     * Operation encargosGet
      *
-     * Calcule o Preço de Venda do produto.
+     * Calcule os Encargos sobre o Preço de Venda do produto..
      *
      *
      * @return Http response
      */
-    public function vendaGet()
+    public function encargosGet()
     {
         $input = Request::all();
 
@@ -42,25 +42,29 @@ class VendaApi extends Controller
 
 
         //not path params validation
+        if (!isset($input['venda'])) {
+            throw new \InvalidArgumentException('Missing the required parameter $venda when calling encargosGet');
+        }
+        $venda = $input['venda'];
+
         if (!isset($input['custo'])) {
-            throw new \InvalidArgumentException('Missing the required parameter $custo when calling vendaGet');
+            throw new \InvalidArgumentException('Missing the required parameter $custo when calling encargosGet');
         }
         $custo = $input['custo'];
 
-        if (!isset($input['encargos'])) {
-            throw new \InvalidArgumentException('Missing the required parameter $encargos when calling vendaGet');
-        }
-        $encargos = $input['encargos'];
-
         if (!isset($input['lucro'])) {
-            throw new \InvalidArgumentException('Missing the required parameter $lucro when calling vendaGet');
+            throw new \InvalidArgumentException('Missing the required parameter $lucro when calling encargosGet');
         }
         $lucro = $input['lucro'];
 
         $valor = round(abs(
-          $custo*(1+$lucro)/(1-$encargos)
+          $custo*(1+$lucro)-$venda
         ),2);
-        
-        return response()->json(['valor' => $valor]);
+
+        $porcentagem = round(abs(
+          $valor * 100 / $venda
+        ),2);
+
+        return response()->json(['valor' => $valor, 'porcentagem' => $porcentagem]);
     }
 }

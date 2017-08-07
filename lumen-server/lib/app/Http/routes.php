@@ -27,19 +27,26 @@ $app->get('/', function () use ($app) {
  * Notes: Aqui é retornado o Custo Total Unitário do Produto, de acordo com os dados passados no parâmetro.  Fórmula: C &#x3D; P(1-E)/(1+M)  Legenda: P - Preço de Venda C - Custo Total Unitário M - Margem de Lucro E - Encargos
  * Output-Formats: [application/xml, application/json]
  */
-$app->GET('/api/precos/v1/custo', 'CustoApi@custoGet');
+$app->GET('/precos/v1/custo', 'CustoApi@custoGet');
+/**
+ * GET encargosGet
+ * Summary: Calcule os Encargos sobre o Preço de Venda do produto.
+ * Notes: Aqui é retornado os Encargos sobre o Preço de Venda do Produto, de acordo com os dados passados no parâmetro.  Fórmula: E &#x3D; C(1-M)-P  Legenda: P - Preço de Venda C - Custo Total Unitário M - Margem de Lucro E - Encargos
+ * Output-Formats: [application/xml, application/json]
+ */
+$app->GET('/precos/v1/encargos', 'EncargosApi@encargosGet');
 /**
  * GET lucroGet
  * Summary: Calcule a Margem de Lucro aplicada sobre o Custo Total Unitário.
- * Notes: Aqui é retornada a margem de lucro aplicada sobre o Custo Total Unitário, de acordo com os dados passados no parâmetro.  Fórmula: M &#x3D; P(1-E)-C/C  Legenda: P - Preço de Venda C - Custo Total Unitário M - Margem de Lucro E - Encargos
+ * Notes: Aqui é retornada a margem de lucro aplicada sobre o Custo Total Unitário, de acordo com os dados passados no parâmetro.  Fórmula: M &#x3D; P(1-E)-C  Legenda: P - Preço de Venda C - Custo Total Unitário M - Margem de Lucro E - Encargos
  * Output-Formats: [application/xml, application/json]
  */
-$app->GET('/api/precos/v1/lucro', 'LucroApi@lucroGet');
+$app->GET('/precos/v1/lucro', 'LucroApi@lucroGet');
 /**
  * GET vendaGet
  * Summary: Calcule o Preço de Venda do produto
  * Notes: Aqui é retornado o preço de venda do produto, de acordo com os dados passados no parâmetro.  Fórmula: P &#x3D; C(1+M)/(1-E)  Legenda: P - Preço de Venda C - Custo Total Unitário M - Margem de Lucro E - Encargos
  * Output-Formats: [application/xml, application/json]
  */
-$app->GET('/api/precos/v1/venda', 'VendaApi@vendaGet');
+$app->GET('/precos/v1/venda', 'VendaApi@vendaGet');
 

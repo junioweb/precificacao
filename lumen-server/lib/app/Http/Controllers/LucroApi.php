@@ -57,7 +57,14 @@ class LucroApi extends Controller
         }
         $encargos = $input['encargos'];
 
+        $valor = round(abs(
+          $venda*(1-$encargos)-$custo
+        ),2);
 
-        return response('How about implementing lucroGet as a GET method ?');
+        $porcentagem = round(abs(
+          $valor * 100 / $custo
+        ),2);
+
+        return response()->json(['valor' => $valor, 'porcentagem' => $porcentagem]);
     }
 }
