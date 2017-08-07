@@ -6,7 +6,9 @@
  * Do not edit the class manually.
  */
 
-require_once __DIR__.'/../vendor/autoload.php';
+//development
+//require_once __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/../bootstrap/autoload.php';
 
 try {
     (new Dotenv\Dotenv(__DIR__.'/../'))->load();
@@ -25,9 +27,11 @@ try {
 |
 */
 
-$app = new Laravel\Lumen\Application(
-    realpath(__DIR__.'/../')
-);
+//development
+// $app = new Laravel\Lumen\Application(
+//     realpath(__DIR__.'/../')
+// );
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
 $app->withFacades();
 
